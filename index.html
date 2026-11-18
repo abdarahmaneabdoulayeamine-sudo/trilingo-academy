@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trilingo Academy | Apprendre l’arabe, le français et l’anglais</title>
-<meta name="description" content="PDF d’apprentissage arabe, français et anglais pour enfants et élèves, et traduction professionnelle. Commande par WhatsApp, paiement par mobile money.">
+<meta name="description" content="PDF d’apprentissage arabe, français et anglais pour enfants et élèves, et cours de Terminale avec exercices corrigés. Commande par WhatsApp, paiement par mobile money.">
 <meta property="og:title" content="Trilingo Academy">
 <meta property="og:description" content="Apprenez l’arabe, le français et l’anglais avec des PDF simples et efficaces.">
 <meta property="og:type" content="website">
@@ -82,7 +82,7 @@ footer{padding:28px 0 90px;text-align:center;color:var(--muted);font-size:14px}
 <div class="hero"><div class="wrap">
   <div class="chips"><span class="chip" style="background:var(--blue)">العربية</span><span class="chip" style="background:var(--red)">Français</span><span class="chip" style="background:var(--green)">English</span></div>
   <h1>Apprenez une nouvelle langue, simplement</h1>
-  <p>Des PDF pour apprendre l’arabe, le français et l’anglais, des cours de Terminale avec exercices corrigés, et un service de traduction professionnelle.</p>
+  <p>Des PDF pour apprendre l’arabe, le français et l’anglais, et des cours de Terminale avec exercices corrigés.</p>
   <a class="btn" href="#pdf">Découvrir les PDF</a><a class="btn ghost" href="#terminale">Cours de Terminale</a>
 </div></div>
 
@@ -128,15 +128,6 @@ footer{padding:28px 0 90px;text-align:center;color:var(--muted);font-size:14px}
   <div class="pay"><span>Airtel Money</span><span>Moov Money</span><span>Carte Visa (clients à l’étranger)</span></div>
 </div></section>
 
-<section id="traduction" class="alt"><div class="wrap">
-  <h2>Traduction professionnelle</h2>
-  <p class="sub">Traducteur trilingue, formé en relations économiques internationales. Vocabulaire juridique et commercial précis.</p>
-  <div class="grid">
-    <div class="card"><h3>Ce que nous traduisons</h3><ul class="list"><li>Catalogues et fiches produits</li><li>Sites web et réseaux sociaux</li><li>Documents d’import-export</li><li>Rapports et textes économiques</li></ul></div>
-    <div class="card"><h3>Pourquoi nous choisir</h3><ul class="list"><li>Arabe, français et anglais, dans tous les sens</li><li>Spécialisation en économie et commerce</li><li>Relecture incluse</li><li>Livraison rapide</li></ul><a class="btn blue" id="quote" href="#" style="margin-top:8px">Demander un devis</a></div>
-  </div>
-</div></section>
-
 <section id="faq"><div class="wrap">
   <h2>Questions fréquentes</h2><p class="sub"></p>
   <details><summary>Comment je reçois mon PDF ?</summary><p>Directement sur WhatsApp, après confirmation de votre paiement.</p></details>
@@ -178,4 +169,29 @@ pairs.forEach(function(p){
 });
 
 var COURS_PRICE = "2 500 FCFA";
-function L(n,d,ok){return [n,d||"C
+function L(n,d,ok){return [n,d||"Cours et exercices corrigés",!!ok];}
+var series = {
+ "Série A4":[L("Philosophie","Cours et sujets traités (dissertations et commentaires corrigés)",true),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Mathématiques"),L("Histoire"),L("Géographie")],
+ "Série C":[L("Mathématiques","Cours complet et exercices corrigés (arithmétique, complexes, analyse, géométrie, probabilités...)",true),L("Physique-Chimie"),L("SVT"),L("Philosophie"),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Histoire"),L("Géographie")],
+ "Série D":[L("Mathématiques","Cours complet et exercices corrigés (complexes, suites, analyse, probabilités, algèbre...)",true),L("Physique-Chimie"),L("SVT"),L("Philosophie"),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Histoire"),L("Géographie")],
+ "Série E":[L("Mathématiques","Cours complet et exercices corrigés (arithmétique, complexes, analyse, géométrie, probabilités...)",true),L("Physique-Chimie"),L("Philosophie"),L("Français"),L("Anglais"),L("Histoire"),L("Géographie")]
+};
+var tabsBox=document.getElementById("tabs"), coursesBox=document.getElementById("courses");
+function showSerie(name){
+  Array.prototype.forEach.call(tabsBox.children,function(b){b.className="tab"+(b.textContent===name?" on":"");});
+  coursesBox.innerHTML="";
+  series[name].forEach(function(c){
+    var d=document.createElement("div");d.className="card";
+    d.innerHTML='<span class="tag">'+name+'</span><h3>'+c[0]+'</h3><p>'+c[1]+'</p><div class="price">'+COURS_PRICE+'</div>';
+    var a=document.createElement("a");a.className="btn";a.textContent="Commander";
+    link(a,"Bonjour Trilingo Academy, je veux commander le PDF : "+c[0]+" ("+name+", Terminale).");
+    d.appendChild(a);coursesBox.appendChild(d);
+  });
+}
+Object.keys(series).forEach(function(n){var b=document.createElement("button");b.className="tab";b.textContent=n;b.onclick=function(){showSerie(n);};tabsBox.appendChild(b);});
+showSerie("Série D");
+link(document.getElementById("cta"),"Bonjour Trilingo Academy !");
+link(document.getElementById("float"),"Bonjour Trilingo Academy !");
+</script>
+</body>
+  </html>
