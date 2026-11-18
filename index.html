@@ -69,9 +69,6 @@ footer{padding:28px 0 90px;text-align:center;color:var(--muted);font-size:14px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .tab{padding:10px 18px;border-radius:99px;border:2px solid var(--navy);background:#fff;color:var(--navy);font-weight:700;font-size:15px;cursor:pointer}
 .tab.on{background:var(--navy);color:#fff}
-.st{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;margin-left:6px}
-.st.ok{background:#e3f6e8;color:var(--green)}.st.soon{background:#fff3cd;color:#8a6d00}
-.btn.soonbtn{background:#8794a7}
 @media(max-width:560px){nav a:nth-child(n+3){display:none}.btn.ghost{margin:10px 0 0}}
 </style>
 </head>
@@ -181,31 +178,4 @@ pairs.forEach(function(p){
 });
 
 var COURS_PRICE = "2 500 FCFA";
-function L(n,d,ok){return [n,d||"Cours et exercices corrigés",!!ok];}
-var series = {
- "Série A4":[L("Philosophie","Cours et sujets traités (dissertations et commentaires corrigés)",true),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Mathématiques"),L("Histoire"),L("Géographie")],
- "Série C":[L("Mathématiques","Cours complet et exercices corrigés (arithmétique, complexes, analyse, géométrie, probabilités...)",true),L("Physique-Chimie"),L("SVT"),L("Philosophie"),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Histoire"),L("Géographie")],
- "Série D":[L("Mathématiques","Cours complet et exercices corrigés (complexes, suites, analyse, probabilités, algèbre...)",true),L("Physique-Chimie"),L("SVT"),L("Philosophie"),L("Français"),L("Français (langue vivante)"),L("Arabe"),L("Arabe (langue vivante)"),L("Anglais"),L("Histoire"),L("Géographie")],
- "Série E":[L("Mathématiques","Cours complet et exercices corrigés (arithmétique, complexes, analyse, géométrie, probabilités...)",true),L("Physique-Chimie"),L("Philosophie"),L("Français"),L("Anglais"),L("Histoire"),L("Géographie")]
-};
-var tabsBox=document.getElementById("tabs"), coursesBox=document.getElementById("courses");
-function showSerie(name){
-  Array.prototype.forEach.call(tabsBox.children,function(b){b.className="tab"+(b.textContent===name?" on":"");});
-  coursesBox.innerHTML="";
-  series[name].forEach(function(c){
-    var d=document.createElement("div");d.className="card";
-    d.innerHTML='<span class="tag">'+name+'</span><span class="st '+(c[2]?'ok">Disponible':'soon">Bientôt')+'</span><h3 style="margin-top:8px">'+c[0]+'</h3><p>'+c[1]+'</p>'+(c[2]?'<div class="price">'+COURS_PRICE+'</div>':'');
-    var a=document.createElement("a");a.target="_blank";a.rel="noopener";
-    if(c[2]){a.className="btn";a.textContent="Commander";link(a,"Bonjour Trilingo Academy, je veux commander le PDF : "+c[0]+" ("+name+", Terminale).");}
-    else{a.className="btn soonbtn";a.textContent="Me prévenir";link(a,"Bonjour Trilingo Academy, prévenez-moi quand le PDF "+c[0]+" ("+name+", Terminale) sera disponible.");}
-    d.appendChild(a);coursesBox.appendChild(d);
-  });
-}
-Object.keys(series).forEach(function(n){var b=document.createElement("button");b.className="tab";b.textContent=n;b.onclick=function(){showSerie(n);};tabsBox.appendChild(b);});
-showSerie("Série D");
-link(document.getElementById("quote"),"Bonjour, je voudrais un devis de traduction.");
-link(document.getElementById("cta"),"Bonjour Trilingo Academy !");
-link(document.getElementById("float"),"Bonjour Trilingo Academy !");
-</script>
-</body>
-  </html>
+function L(n,d,ok){return [n,d||"C
